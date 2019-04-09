@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://streamline/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://streamline/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://streamline/">
+      <s:element name="GetGroupsWithPersonsIdsAllowedToWriteDiscussion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="project" type="tns:GetGroupsWithPersonsIdsAllowedToWriteDiscussionDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetGroupsWithPersonsIdsAllowedToWriteDiscussionDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGroupsWithPersonsIdsAllowedToWriteDiscussionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupsWithPersonsIdsAllowedToWriteDiscussionResult" type="tns:ArrayOfPersonsGroupWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPersonsGroupWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonsGroupWrapper" nillable="true" type="tns:PersonsGroupWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonsGroupWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="GroupId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonsIds" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newProject" type="tns:CreateProjectDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateProjectDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectTypeId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Order" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectOwnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectResponsibleId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlannedStartDateSerialized" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlannedEndDateSerialized" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfFieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldWrapper" nillable="true" type="tns:FieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldVal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentFieldWrapper">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldWrapper">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentBody" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentContentType" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateProjectResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateProjectByDiscussion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newProject" type="tns:CreateProjectWithDiscussion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateProjectWithDiscussion">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CreateProjectDataContract">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DiscussionId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateProjectByDiscussionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateProjectByDiscussionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DelegateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="projectData" type="tns:DelegateProjectDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DelegateProjectDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelegateUserId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelegateOwnerId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AutoAccept" nillable="true" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DelegateProjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ChangeParent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contract" type="tns:ChangeParentDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChangeParentDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangeParentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeParentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="project" type="tns:ProjectIdDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectIdDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteProjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contract" type="tns:ProjectIdDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectResult" type="tns:ProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ProjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectTypeId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentComplete" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponsibleId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceAssignments" type="tns:ArrayOfResourceAssignmentWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfResourceAssignmentWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResourceAssignmentWrapper" nillable="true" type="tns:ResourceAssignmentWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResourceAssignmentWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PersonId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contract" type="tns:UpdateProjectDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdateProjectDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:ProjectWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateProjectResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectInfoResult" type="tns:ProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProjectInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProjectInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateProjectInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectFieldsResult" type="tns:ArrayOfProjectFieldWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectFieldWrapper" nillable="true" type="tns:ProjectFieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateProjectFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstParams" type="tns:ArrayOfFieldWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProjectFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateProjectFieldsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectChilds">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="contract" type="tns:GetProjectChildsDataContract" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProjectChildsDataContract">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProjectChildsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectChildsResult" type="tns:ArrayOfProjectChildWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectChildWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectChildWrapper" nillable="true" type="tns:ProjectChildWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectChildWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentTypeId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProjectsUidsByType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="typeId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentProjectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectsUidsByTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectsUidsByTypeResult" type="tns:ArrayOfProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectWrapper" nillable="true" type="tns:ProjectWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSubprojectsDates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubprojectsDatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubprojectsDatesResult" type="tns:ArrayOfProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectResourceAssignments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjectResourceAssignmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectResourceAssignmentsResult" type="tns:ArrayOfResourceAssignmentWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="filterWrappers" type="tns:ArrayOfFilterWrapper" />
+            <s:element minOccurs="0" maxOccurs="1" name="sortWrappers" type="tns:ArrayOfSortWrapper" />
+            <s:element minOccurs="1" maxOccurs="1" name="Hierarchical" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFilterWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FilterWrapper" nillable="true" type="tns:FilterWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FilterWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Field" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Operation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupOr" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSortWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SortWrapper" nillable="true" type="tns:SortWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SortWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Field" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Descending" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProjectsResult" type="tns:ArrayOfProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHorizontalRelationsProjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHorizontalRelationsProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHorizontalRelationsProjectsResult" type="tns:ArrayOfRelationdWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRelationdWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RelationdWrapper" nillable="true" type="tns:RelationdWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RelationdWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectTypeId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelationTemplateId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProjectWrapper" nillable="true" type="tns:ProjectWrapper" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfProjectFieldWrapper" nillable="true" type="tns:ArrayOfProjectFieldWrapper" />
+      <s:element name="ArrayOfProjectWrapper" nillable="true" type="tns:ArrayOfProjectWrapper" />
+      <s:element name="ArrayOfResourceAssignmentWrapper" nillable="true" type="tns:ArrayOfResourceAssignmentWrapper" />
+      <s:element name="ArrayOfRelationdWrapper" nillable="true" type="tns:ArrayOfRelationdWrapper" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetGroupsWithPersonsIdsAllowedToWriteDiscussionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupsWithPersonsIdsAllowedToWriteDiscussion" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsWithPersonsIdsAllowedToWriteDiscussionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsWithPersonsIdsAllowedToWriteDiscussionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateProject" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectByDiscussionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateProjectByDiscussion" />
+  </wsdl:message>
+  <wsdl:message name="CreateProjectByDiscussionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateProjectByDiscussionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DelegateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:DelegateProject" />
+  </wsdl:message>
+  <wsdl:message name="DelegateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:DelegateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeParentSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeParent" />
+  </wsdl:message>
+  <wsdl:message name="ChangeParentSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProject" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProject" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProjectInfo" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProjectInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectFields" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProjectFields" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProjectFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectChildsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectChilds" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectChildsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectChildsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsUidsByTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectsUidsByType" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsUidsByTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectsUidsByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubprojectsDatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubprojectsDates" />
+  </wsdl:message>
+  <wsdl:message name="GetSubprojectsDatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubprojectsDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectResourceAssignmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjectResourceAssignments" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectResourceAssignmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectResourceAssignmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProjects" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHorizontalRelationsProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHorizontalRelationsProjects" />
+  </wsdl:message>
+  <wsdl:message name="GetHorizontalRelationsProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHorizontalRelationsProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInfoHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ProjectWrapper" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectInfoHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+    <wsdl:part name="name" type="s:string" />
+    <wsdl:part name="description" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectFieldsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectFieldsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProjectFieldWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsUidsByTypeHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="typeId" type="s:string" />
+    <wsdl:part name="status" type="s:string" />
+    <wsdl:part name="parentProjectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectsUidsByTypeHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProjectWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetSubprojectsDatesHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSubprojectsDatesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProjectWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectResourceAssignmentsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetProjectResourceAssignmentsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfResourceAssignmentWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetHorizontalRelationsProjectsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetHorizontalRelationsProjectsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRelationdWrapper" />
+  </wsdl:message>
+  <wsdl:portType name="APIProjectsSoap">
+    <wsdl:operation name="GetGroupsWithPersonsIdsAllowedToWriteDiscussion">
+      <wsdl:input message="tns:GetGroupsWithPersonsIdsAllowedToWriteDiscussionSoapIn" />
+      <wsdl:output message="tns:GetGroupsWithPersonsIdsAllowedToWriteDiscussionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <wsdl:input message="tns:CreateProjectSoapIn" />
+      <wsdl:output message="tns:CreateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProjectByDiscussion">
+      <wsdl:input message="tns:CreateProjectByDiscussionSoapIn" />
+      <wsdl:output message="tns:CreateProjectByDiscussionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DelegateProject">
+      <wsdl:input message="tns:DelegateProjectSoapIn" />
+      <wsdl:output message="tns:DelegateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParent">
+      <wsdl:input message="tns:ChangeParentSoapIn" />
+      <wsdl:output message="tns:ChangeParentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input message="tns:DeleteProjectSoapIn" />
+      <wsdl:output message="tns:DeleteProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <wsdl:input message="tns:GetProjectSoapIn" />
+      <wsdl:output message="tns:GetProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdl:input message="tns:UpdateProjectSoapIn" />
+      <wsdl:output message="tns:UpdateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInfo">
+      <wsdl:input message="tns:GetProjectInfoSoapIn" />
+      <wsdl:output message="tns:GetProjectInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectInfo">
+      <wsdl:input message="tns:UpdateProjectInfoSoapIn" />
+      <wsdl:output message="tns:UpdateProjectInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectFields">
+      <wsdl:input message="tns:GetProjectFieldsSoapIn" />
+      <wsdl:output message="tns:GetProjectFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectFields">
+      <wsdl:input message="tns:UpdateProjectFieldsSoapIn" />
+      <wsdl:output message="tns:UpdateProjectFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectChilds">
+      <wsdl:input message="tns:GetProjectChildsSoapIn" />
+      <wsdl:output message="tns:GetProjectChildsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsUidsByType">
+      <wsdl:input message="tns:GetProjectsUidsByTypeSoapIn" />
+      <wsdl:output message="tns:GetProjectsUidsByTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubprojectsDates">
+      <wsdl:input message="tns:GetSubprojectsDatesSoapIn" />
+      <wsdl:output message="tns:GetSubprojectsDatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectResourceAssignments">
+      <wsdl:input message="tns:GetProjectResourceAssignmentsSoapIn" />
+      <wsdl:output message="tns:GetProjectResourceAssignmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjects">
+      <wsdl:input message="tns:GetProjectsSoapIn" />
+      <wsdl:output message="tns:GetProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHorizontalRelationsProjects">
+      <wsdl:input message="tns:GetHorizontalRelationsProjectsSoapIn" />
+      <wsdl:output message="tns:GetHorizontalRelationsProjectsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="APIProjectsHttpPost">
+    <wsdl:operation name="GetProjectInfo">
+      <wsdl:input message="tns:GetProjectInfoHttpPostIn" />
+      <wsdl:output message="tns:GetProjectInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectInfo">
+      <wsdl:input message="tns:UpdateProjectInfoHttpPostIn" />
+      <wsdl:output message="tns:UpdateProjectInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectFields">
+      <wsdl:input message="tns:GetProjectFieldsHttpPostIn" />
+      <wsdl:output message="tns:GetProjectFieldsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsUidsByType">
+      <wsdl:input message="tns:GetProjectsUidsByTypeHttpPostIn" />
+      <wsdl:output message="tns:GetProjectsUidsByTypeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubprojectsDates">
+      <wsdl:input message="tns:GetSubprojectsDatesHttpPostIn" />
+      <wsdl:output message="tns:GetSubprojectsDatesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectResourceAssignments">
+      <wsdl:input message="tns:GetProjectResourceAssignmentsHttpPostIn" />
+      <wsdl:output message="tns:GetProjectResourceAssignmentsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHorizontalRelationsProjects">
+      <wsdl:input message="tns:GetHorizontalRelationsProjectsHttpPostIn" />
+      <wsdl:output message="tns:GetHorizontalRelationsProjectsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIProjectsSoap" type="tns:APIProjectsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGroupsWithPersonsIdsAllowedToWriteDiscussion">
+      <soap:operation soapAction="http://streamline/GetGroupsWithPersonsIdsAllowedToWriteDiscussion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <soap:operation soapAction="http://streamline/CreateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProjectByDiscussion">
+      <soap:operation soapAction="http://streamline/CreateProjectByDiscussion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelegateProject">
+      <soap:operation soapAction="http://streamline/DelegateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParent">
+      <soap:operation soapAction="http://streamline/ChangeParent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://streamline/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <soap:operation soapAction="http://streamline/GetProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap:operation soapAction="http://streamline/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInfo">
+      <soap:operation soapAction="http://streamline/GetProjectInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectInfo">
+      <soap:operation soapAction="http://streamline/UpdateProjectInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectFields">
+      <soap:operation soapAction="http://streamline/GetProjectFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectFields">
+      <soap:operation soapAction="http://streamline/UpdateProjectFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectChilds">
+      <soap:operation soapAction="http://streamline/GetProjectChilds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsUidsByType">
+      <soap:operation soapAction="http://streamline/GetProjectsUidsByType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubprojectsDates">
+      <soap:operation soapAction="http://streamline/GetSubprojectsDates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectResourceAssignments">
+      <soap:operation soapAction="http://streamline/GetProjectResourceAssignments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjects">
+      <soap:operation soapAction="http://streamline/GetProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHorizontalRelationsProjects">
+      <soap:operation soapAction="http://streamline/GetHorizontalRelationsProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIProjectsSoap12" type="tns:APIProjectsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGroupsWithPersonsIdsAllowedToWriteDiscussion">
+      <soap12:operation soapAction="http://streamline/GetGroupsWithPersonsIdsAllowedToWriteDiscussion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProject">
+      <soap12:operation soapAction="http://streamline/CreateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProjectByDiscussion">
+      <soap12:operation soapAction="http://streamline/CreateProjectByDiscussion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelegateProject">
+      <soap12:operation soapAction="http://streamline/DelegateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParent">
+      <soap12:operation soapAction="http://streamline/ChangeParent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap12:operation soapAction="http://streamline/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <soap12:operation soapAction="http://streamline/GetProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap12:operation soapAction="http://streamline/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectInfo">
+      <soap12:operation soapAction="http://streamline/GetProjectInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectInfo">
+      <soap12:operation soapAction="http://streamline/UpdateProjectInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectFields">
+      <soap12:operation soapAction="http://streamline/GetProjectFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectFields">
+      <soap12:operation soapAction="http://streamline/UpdateProjectFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectChilds">
+      <soap12:operation soapAction="http://streamline/GetProjectChilds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsUidsByType">
+      <soap12:operation soapAction="http://streamline/GetProjectsUidsByType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubprojectsDates">
+      <soap12:operation soapAction="http://streamline/GetSubprojectsDates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectResourceAssignments">
+      <soap12:operation soapAction="http://streamline/GetProjectResourceAssignments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjects">
+      <soap12:operation soapAction="http://streamline/GetProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHorizontalRelationsProjects">
+      <soap12:operation soapAction="http://streamline/GetHorizontalRelationsProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIProjectsHttpPost" type="tns:APIProjectsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetProjectInfo">
+      <http:operation location="/GetProjectInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProjectInfo">
+      <http:operation location="/UpdateProjectInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectFields">
+      <http:operation location="/GetProjectFields" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectsUidsByType">
+      <http:operation location="/GetProjectsUidsByType" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubprojectsDates">
+      <http:operation location="/GetSubprojectsDates" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectResourceAssignments">
+      <http:operation location="/GetProjectResourceAssignments" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHorizontalRelationsProjects">
+      <http:operation location="/GetHorizontalRelationsProjects" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIProjects">
+    <wsdl:port name="APIProjectsSoap" binding="tns:APIProjectsSoap">
+      <soap:address location="https://rbtn.a2nta.ru/components/services/APIProjects.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIProjectsSoap12" binding="tns:APIProjectsSoap12">
+      <soap12:address location="https://rbtn.a2nta.ru/components/services/APIProjects.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIProjectsHttpPost" binding="tns:APIProjectsHttpPost">
+      <http:address location="https://rbtn.a2nta.ru/components/services/APIProjects.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

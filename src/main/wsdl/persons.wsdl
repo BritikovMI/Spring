@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://streamline/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://streamline/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://streamline/">
+      <s:element name="GetPersons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonsResult" type="tns:PersonQueryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersonQueryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ServiceQueryResultOfSlPerson">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Persons" type="tns:ArrayOfSlPerson" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ServiceQueryResultOfSlPerson">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:ArrayOfSlPerson" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSlPerson">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SlPerson" nillable="true" type="tns:SlPerson" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SlPerson">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LinkToAD" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangedAt" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonResult" type="tns:PersonQueryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllowedPersons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllowedPersonsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllowedPersonsResult" type="tns:PersonQueryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupsResult" type="tns:GroupQueryResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GroupQueryResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ServiceQueryResultOfSlGroup" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ServiceQueryResultOfSlGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:ArrayOfSlGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSlGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SlGroup" nillable="true" type="tns:SlGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SlGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Members" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPersonsXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonsXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonsXmlResult" type="tns:UsersListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UsersListWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Users" type="tns:ArrayOfUserWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserWrapper" nillable="true" type="tns:UserWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Position" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BusinessPhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowLogin" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangedAt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfFieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldWrapper" nillable="true" type="tns:FieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldVal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentFieldWrapper">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldWrapper">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentBody" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentContentType" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreatePerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="notes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="businessPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobilePhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photoBase64" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePersonResult" type="tns:ServiceQueryResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ServiceQueryResultOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Objects" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EditPerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="position" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="notes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="businessPhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mobilePhone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photoBase64" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowLogin" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditPersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditPersonResult" type="tns:ServiceQueryResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserPhoto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="personId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUserPhotoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUserPhotoResult" type="tns:ServiceQueryResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LinkUserToAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="personId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ADid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LinkUserToADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LinkUserToADResult" type="tns:ServiceQueryResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLinkWithAD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="personId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteLinkWithADResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteLinkWithADResult" type="tns:ServiceQueryResultOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonQueryResult" nillable="true" type="tns:PersonQueryResult" />
+      <s:element name="GroupQueryResult" nillable="true" type="tns:GroupQueryResult" />
+      <s:element name="UsersListWrapper" nillable="true" type="tns:UsersListWrapper" />
+      <s:element name="ServiceQueryResultOfString" nillable="true" type="tns:ServiceQueryResultOfString" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPersonsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersons" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerson" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllowedPersonsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllowedPersons" />
+  </wsdl:message>
+  <wsdl:message name="GetAllowedPersonsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllowedPersonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersonsXml" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonsXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePerson" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditPersonSoapIn">
+    <wsdl:part name="parameters" element="tns:EditPerson" />
+  </wsdl:message>
+  <wsdl:message name="EditPersonSoapOut">
+    <wsdl:part name="parameters" element="tns:EditPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserPhotoSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUserPhoto" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserPhotoSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUserPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LinkUserToADSoapIn">
+    <wsdl:part name="parameters" element="tns:LinkUserToAD" />
+  </wsdl:message>
+  <wsdl:message name="LinkUserToADSoapOut">
+    <wsdl:part name="parameters" element="tns:LinkUserToADResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLinkWithADSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteLinkWithAD" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLinkWithADSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteLinkWithADResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonQueryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonQueryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetAllowedPersonsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllowedPersonsHttpPostOut">
+    <wsdl:part name="Body" element="tns:PersonQueryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsHttpPostOut">
+    <wsdl:part name="Body" element="tns:GroupQueryResult" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsXmlHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonsXmlHttpPostOut">
+    <wsdl:part name="Body" element="tns:UsersListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="company" type="s:string" />
+    <wsdl:part name="position" type="s:string" />
+    <wsdl:part name="notes" type="s:string" />
+    <wsdl:part name="businessPhone" type="s:string" />
+    <wsdl:part name="mobilePhone" type="s:string" />
+    <wsdl:part name="fax" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="photoBase64" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePersonHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceQueryResultOfString" />
+  </wsdl:message>
+  <wsdl:message name="EditPersonHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="firstName" type="s:string" />
+    <wsdl:part name="lastName" type="s:string" />
+    <wsdl:part name="company" type="s:string" />
+    <wsdl:part name="position" type="s:string" />
+    <wsdl:part name="notes" type="s:string" />
+    <wsdl:part name="businessPhone" type="s:string" />
+    <wsdl:part name="mobilePhone" type="s:string" />
+    <wsdl:part name="fax" type="s:string" />
+    <wsdl:part name="email" type="s:string" />
+    <wsdl:part name="photoBase64" type="s:string" />
+    <wsdl:part name="allowLogin" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EditPersonHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceQueryResultOfString" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserPhotoHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="personId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckUserPhotoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceQueryResultOfString" />
+  </wsdl:message>
+  <wsdl:message name="LinkUserToADHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="personId" type="s:string" />
+    <wsdl:part name="ADid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LinkUserToADHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceQueryResultOfString" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLinkWithADHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="personId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteLinkWithADHttpPostOut">
+    <wsdl:part name="Body" element="tns:ServiceQueryResultOfString" />
+  </wsdl:message>
+  <wsdl:portType name="PersonsSoap">
+    <wsdl:operation name="GetPersons">
+      <wsdl:input message="tns:GetPersonsSoapIn" />
+      <wsdl:output message="tns:GetPersonsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <wsdl:input message="tns:GetPersonSoapIn" />
+      <wsdl:output message="tns:GetPersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedPersons">
+      <wsdl:input message="tns:GetAllowedPersonsSoapIn" />
+      <wsdl:output message="tns:GetAllowedPersonsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <wsdl:input message="tns:GetGroupsSoapIn" />
+      <wsdl:output message="tns:GetGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsXml">
+      <wsdl:input message="tns:GetPersonsXmlSoapIn" />
+      <wsdl:output message="tns:GetPersonsXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <wsdl:input message="tns:CreatePersonSoapIn" />
+      <wsdl:output message="tns:CreatePersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <wsdl:input message="tns:EditPersonSoapIn" />
+      <wsdl:output message="tns:EditPersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserPhoto">
+      <wsdl:input message="tns:CheckUserPhotoSoapIn" />
+      <wsdl:output message="tns:CheckUserPhotoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkUserToAD">
+      <wsdl:input message="tns:LinkUserToADSoapIn" />
+      <wsdl:output message="tns:LinkUserToADSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkWithAD">
+      <wsdl:input message="tns:DeleteLinkWithADSoapIn" />
+      <wsdl:output message="tns:DeleteLinkWithADSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PersonsHttpPost">
+    <wsdl:operation name="GetPersons">
+      <wsdl:input message="tns:GetPersonsHttpPostIn" />
+      <wsdl:output message="tns:GetPersonsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <wsdl:input message="tns:GetPersonHttpPostIn" />
+      <wsdl:output message="tns:GetPersonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedPersons">
+      <wsdl:input message="tns:GetAllowedPersonsHttpPostIn" />
+      <wsdl:output message="tns:GetAllowedPersonsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <wsdl:input message="tns:GetGroupsHttpPostIn" />
+      <wsdl:output message="tns:GetGroupsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsXml">
+      <wsdl:input message="tns:GetPersonsXmlHttpPostIn" />
+      <wsdl:output message="tns:GetPersonsXmlHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <wsdl:input message="tns:CreatePersonHttpPostIn" />
+      <wsdl:output message="tns:CreatePersonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <wsdl:input message="tns:EditPersonHttpPostIn" />
+      <wsdl:output message="tns:EditPersonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserPhoto">
+      <wsdl:input message="tns:CheckUserPhotoHttpPostIn" />
+      <wsdl:output message="tns:CheckUserPhotoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LinkUserToAD">
+      <wsdl:input message="tns:LinkUserToADHttpPostIn" />
+      <wsdl:output message="tns:LinkUserToADHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkWithAD">
+      <wsdl:input message="tns:DeleteLinkWithADHttpPostIn" />
+      <wsdl:output message="tns:DeleteLinkWithADHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonsSoap" type="tns:PersonsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPersons">
+      <soap:operation soapAction="http://streamline/GetPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap:operation soapAction="http://streamline/GetPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedPersons">
+      <soap:operation soapAction="http://streamline/GetAllowedPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap:operation soapAction="http://streamline/GetGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsXml">
+      <soap:operation soapAction="http://streamline/GetPersonsXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <soap:operation soapAction="http://streamline/CreatePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <soap:operation soapAction="http://streamline/EditPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserPhoto">
+      <soap:operation soapAction="http://streamline/CheckUserPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkUserToAD">
+      <soap:operation soapAction="http://streamline/LinkUserToAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkWithAD">
+      <soap:operation soapAction="http://streamline/DeleteLinkWithAD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PersonsSoap12" type="tns:PersonsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPersons">
+      <soap12:operation soapAction="http://streamline/GetPersons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap12:operation soapAction="http://streamline/GetPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedPersons">
+      <soap12:operation soapAction="http://streamline/GetAllowedPersons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <soap12:operation soapAction="http://streamline/GetGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsXml">
+      <soap12:operation soapAction="http://streamline/GetPersonsXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <soap12:operation soapAction="http://streamline/CreatePerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <soap12:operation soapAction="http://streamline/EditPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserPhoto">
+      <soap12:operation soapAction="http://streamline/CheckUserPhoto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkUserToAD">
+      <soap12:operation soapAction="http://streamline/LinkUserToAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkWithAD">
+      <soap12:operation soapAction="http://streamline/DeleteLinkWithAD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PersonsHttpPost" type="tns:PersonsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetPersons">
+      <http:operation location="/GetPersons" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <http:operation location="/GetPerson" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedPersons">
+      <http:operation location="/GetAllowedPersons" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroups">
+      <http:operation location="/GetGroups" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsXml">
+      <http:operation location="/GetPersonsXml" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePerson">
+      <http:operation location="/CreatePerson" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditPerson">
+      <http:operation location="/EditPerson" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserPhoto">
+      <http:operation location="/CheckUserPhoto" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LinkUserToAD">
+      <http:operation location="/LinkUserToAD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLinkWithAD">
+      <http:operation location="/DeleteLinkWithAD" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Persons">
+    <wsdl:port name="PersonsSoap" binding="tns:PersonsSoap">
+      <soap:address location="https://rbtn.a2nta.ru/components/services/persons.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PersonsSoap12" binding="tns:PersonsSoap12">
+      <soap12:address location="https://rbtn.a2nta.ru/components/services/persons.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PersonsHttpPost" binding="tns:PersonsHttpPost">
+      <http:address location="https://rbtn.a2nta.ru/components/services/persons.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

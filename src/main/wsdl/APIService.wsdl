@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecordsResult" type="tns:RecordsListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RecordsListWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfRecordWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRecordWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecordWrapper" nillable="true" type="tns:RecordWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecordWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecordId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfFieldWrapper" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldWrapper" nillable="true" type="tns:FieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldVal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentFieldWrapper">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldWrapper">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentBody" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentContentType" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUsedObjectsByClassifier">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="classifierId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsedObjectsByClassifierResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsedObjectsByClassifierResult" type="tns:DirectoriesListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DirectoriesListWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Directories" type="tns:ArrayOfDirectoryWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDirectoryWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DirectoryWrapper" nillable="true" type="tns:DirectoryWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DirectoryWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUsedTemplatesForClassifier">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="classifierId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsedTemplatesForClassifierResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsedTemplatesForClassifierResult" type="tns:DirectoriesListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryGroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentdirectoryRecordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="childDirectoryId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildRecordsResult" type="tns:RecordsListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoryInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryTemplateId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoryInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectoryInfoResult" type="tns:DirectoryInfoWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DirectoryInfoWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfFieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteDirectoryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryRecordId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDirectoryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteDirectoryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDirectoryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryRecordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstParams" type="tns:ArrayOfFieldWrapper" />
+            <s:element minOccurs="0" maxOccurs="1" name="record" type="tns:RecordWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDirectoryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeDirectoryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDirectoryRecordStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryRecordId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeDirectoryRecordStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeDirectoryRecordStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDirectoryRecordsByStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordStatus" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDirectoryRecordsByStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchDirectoryRecordsByStatusResult" type="tns:ArrayOfProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProjectWrapper" nillable="true" type="tns:ProjectWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectTypeId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentComplete" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlannedEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualStartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualEndDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponsibleId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResourceAssignments" type="tns:ArrayOfResourceAssignmentWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfResourceAssignmentWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResourceAssignmentWrapper" nillable="true" type="tns:ResourceAssignmentWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResourceAssignmentWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PersonId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDirectoryRequisites">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoryRequisitesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectoryRequisitesResult" type="tns:DirectoryInfoWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDirectoryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryTemplateId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstParams" type="tns:ArrayOfFieldWrapper" />
+            <s:element minOccurs="0" maxOccurs="1" name="record" type="tns:RecordWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDirectoryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertDirectoryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoriesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectoriesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectoriesListResult" type="tns:DirectoriesListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassifierRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="classifierId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClassifierRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClassifierRecordsResult" type="tns:RecordsListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertClassifierRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="classifierId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstParams" type="tns:ArrayOfFieldWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertClassifierRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertClassifierRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelationObjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DirectoryID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelationObjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRelationObjectsResult" type="tns:RelationObjectsListWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RelationObjectsListWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RelationObjects" type="tns:ArrayOfRelationObjectWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRelationObjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RelationObjectWrapper" nillable="true" type="tns:RelationObjectWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RelationObjectWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RelationTemplateId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFirst" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowMultipleValues" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="InsertObjectToProjectRelation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryRecordObjectID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="relationTemplateID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertObjectToProjectRelationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertObjectToProjectRelationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDirectoryRecordValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directoryId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchDirectoryRecordValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchDirectoryRecordValuesResult" type="tns:ArrayOfProjectWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentVersionsResult" type="tns:ArrayOfDocumentVersionWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDocumentVersionWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentVersionWrapper" nillable="true" type="tns:DocumentVersionWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentVersionWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="VersionId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VersionNumber" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RecordsListWrapper" nillable="true" type="tns:RecordsListWrapper" />
+      <s:element name="DirectoriesListWrapper" nillable="true" type="tns:DirectoriesListWrapper" />
+      <s:element name="DirectoryInfoWrapper" nillable="true" type="tns:DirectoryInfoWrapper" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfProjectWrapper" nillable="true" type="tns:ArrayOfProjectWrapper" />
+      <s:element name="RelationObjectsListWrapper" nillable="true" type="tns:RelationObjectsListWrapper" />
+      <s:element name="ArrayOfDocumentVersionWrapper" nillable="true" type="tns:ArrayOfDocumentVersionWrapper" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedObjectsByClassifierSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsedObjectsByClassifier" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedObjectsByClassifierSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsedObjectsByClassifierResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedTemplatesForClassifierSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsedTemplatesForClassifier" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedTemplatesForClassifierSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsedTemplatesForClassifierResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetChildRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectoryInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDirectoryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDirectoryRecord" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDirectoryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDirectoryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeDirectoryRecord" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeDirectoryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeDirectoryRecordStatus" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeDirectoryRecordStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordsByStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchDirectoryRecordsByStatus" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordsByStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchDirectoryRecordsByStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryRequisitesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectoryRequisites" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryRequisitesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectoryRequisitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDirectoryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDirectoryRecord" />
+  </wsdl:message>
+  <wsdl:message name="InsertDirectoryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDirectoryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoriesListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectoriesList" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoriesListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectoriesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClassifierRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClassifierRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetClassifierRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClassifierRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertClassifierRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertClassifierRecord" />
+  </wsdl:message>
+  <wsdl:message name="InsertClassifierRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertClassifierRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationObjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRelationObjects" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationObjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRelationObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertObjectToProjectRelationSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertObjectToProjectRelation" />
+  </wsdl:message>
+  <wsdl:message name="InsertObjectToProjectRelationSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertObjectToProjectRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchDirectoryRecordValues" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchDirectoryRecordValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersions" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordsHttpPostOut">
+    <wsdl:part name="Body" element="tns:RecordsListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedObjectsByClassifierHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="classifierId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedObjectsByClassifierHttpPostOut">
+    <wsdl:part name="Body" element="tns:DirectoriesListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedTemplatesForClassifierHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="classifierId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUsedTemplatesForClassifierHttpPostOut">
+    <wsdl:part name="Body" element="tns:DirectoriesListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetChildRecordsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryGroupId" type="s:string" />
+    <wsdl:part name="parentdirectoryRecordId" type="s:string" />
+    <wsdl:part name="childDirectoryId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChildRecordsHttpPostOut">
+    <wsdl:part name="Body" element="tns:RecordsListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryInfoHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryTemplateId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DirectoryInfoWrapper" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDirectoryRecordHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryRecordId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDirectoryRecordHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordStatusHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryRecordId" type="s:string" />
+    <wsdl:part name="RecordStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChangeDirectoryRecordStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordsByStatusHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryId" type="s:string" />
+    <wsdl:part name="RecordStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordsByStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProjectWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryRequisitesHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoryRequisitesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DirectoryInfoWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoriesListHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="type" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectoriesListHttpPostOut">
+    <wsdl:part name="Body" element="tns:DirectoriesListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetClassifierRecordsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="classifierId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetClassifierRecordsHttpPostOut">
+    <wsdl:part name="Body" element="tns:RecordsListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationObjectsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="DirectoryID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRelationObjectsHttpPostOut">
+    <wsdl:part name="Body" element="tns:RelationObjectsListWrapper" />
+  </wsdl:message>
+  <wsdl:message name="InsertObjectToProjectRelationHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryRecordObjectID" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+    <wsdl:part name="relationTemplateID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertObjectToProjectRelationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordValuesHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="directoryId" type="s:string" />
+    <wsdl:part name="fieldId" type="s:string" />
+    <wsdl:part name="fieldValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchDirectoryRecordValuesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfProjectWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="documentId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDocumentVersionWrapper" />
+  </wsdl:message>
+  <wsdl:portType name="APIServiceSoap">
+    <wsdl:operation name="GetRecords">
+      <wsdl:input message="tns:GetRecordsSoapIn" />
+      <wsdl:output message="tns:GetRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedObjectsByClassifier">
+      <wsdl:input message="tns:GetUsedObjectsByClassifierSoapIn" />
+      <wsdl:output message="tns:GetUsedObjectsByClassifierSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedTemplatesForClassifier">
+      <wsdl:input message="tns:GetUsedTemplatesForClassifierSoapIn" />
+      <wsdl:output message="tns:GetUsedTemplatesForClassifierSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildRecords">
+      <wsdl:input message="tns:GetChildRecordsSoapIn" />
+      <wsdl:output message="tns:GetChildRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryInfo">
+      <wsdl:input message="tns:GetDirectoryInfoSoapIn" />
+      <wsdl:output message="tns:GetDirectoryInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDirectoryRecord">
+      <wsdl:input message="tns:DeleteDirectoryRecordSoapIn" />
+      <wsdl:output message="tns:DeleteDirectoryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecord">
+      <wsdl:input message="tns:ChangeDirectoryRecordSoapIn" />
+      <wsdl:output message="tns:ChangeDirectoryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecordStatus">
+      <wsdl:input message="tns:ChangeDirectoryRecordStatusSoapIn" />
+      <wsdl:output message="tns:ChangeDirectoryRecordStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordsByStatus">
+      <wsdl:input message="tns:SearchDirectoryRecordsByStatusSoapIn" />
+      <wsdl:output message="tns:SearchDirectoryRecordsByStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryRequisites">
+      <wsdl:input message="tns:GetDirectoryRequisitesSoapIn" />
+      <wsdl:output message="tns:GetDirectoryRequisitesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDirectoryRecord">
+      <wsdl:input message="tns:InsertDirectoryRecordSoapIn" />
+      <wsdl:output message="tns:InsertDirectoryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoriesList">
+      <wsdl:input message="tns:GetDirectoriesListSoapIn" />
+      <wsdl:output message="tns:GetDirectoriesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassifierRecords">
+      <wsdl:input message="tns:GetClassifierRecordsSoapIn" />
+      <wsdl:output message="tns:GetClassifierRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertClassifierRecord">
+      <wsdl:input message="tns:InsertClassifierRecordSoapIn" />
+      <wsdl:output message="tns:InsertClassifierRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationObjects">
+      <wsdl:input message="tns:GetRelationObjectsSoapIn" />
+      <wsdl:output message="tns:GetRelationObjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertObjectToProjectRelation">
+      <wsdl:input message="tns:InsertObjectToProjectRelationSoapIn" />
+      <wsdl:output message="tns:InsertObjectToProjectRelationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordValues">
+      <wsdl:input message="tns:SearchDirectoryRecordValuesSoapIn" />
+      <wsdl:output message="tns:SearchDirectoryRecordValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <wsdl:input message="tns:GetDocumentVersionsSoapIn" />
+      <wsdl:output message="tns:GetDocumentVersionsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="APIServiceHttpPost">
+    <wsdl:operation name="GetRecords">
+      <wsdl:input message="tns:GetRecordsHttpPostIn" />
+      <wsdl:output message="tns:GetRecordsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedObjectsByClassifier">
+      <wsdl:input message="tns:GetUsedObjectsByClassifierHttpPostIn" />
+      <wsdl:output message="tns:GetUsedObjectsByClassifierHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedTemplatesForClassifier">
+      <wsdl:input message="tns:GetUsedTemplatesForClassifierHttpPostIn" />
+      <wsdl:output message="tns:GetUsedTemplatesForClassifierHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildRecords">
+      <wsdl:input message="tns:GetChildRecordsHttpPostIn" />
+      <wsdl:output message="tns:GetChildRecordsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryInfo">
+      <wsdl:input message="tns:GetDirectoryInfoHttpPostIn" />
+      <wsdl:output message="tns:GetDirectoryInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDirectoryRecord">
+      <wsdl:input message="tns:DeleteDirectoryRecordHttpPostIn" />
+      <wsdl:output message="tns:DeleteDirectoryRecordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecordStatus">
+      <wsdl:input message="tns:ChangeDirectoryRecordStatusHttpPostIn" />
+      <wsdl:output message="tns:ChangeDirectoryRecordStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordsByStatus">
+      <wsdl:input message="tns:SearchDirectoryRecordsByStatusHttpPostIn" />
+      <wsdl:output message="tns:SearchDirectoryRecordsByStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryRequisites">
+      <wsdl:input message="tns:GetDirectoryRequisitesHttpPostIn" />
+      <wsdl:output message="tns:GetDirectoryRequisitesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoriesList">
+      <wsdl:input message="tns:GetDirectoriesListHttpPostIn" />
+      <wsdl:output message="tns:GetDirectoriesListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassifierRecords">
+      <wsdl:input message="tns:GetClassifierRecordsHttpPostIn" />
+      <wsdl:output message="tns:GetClassifierRecordsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationObjects">
+      <wsdl:input message="tns:GetRelationObjectsHttpPostIn" />
+      <wsdl:output message="tns:GetRelationObjectsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertObjectToProjectRelation">
+      <wsdl:input message="tns:InsertObjectToProjectRelationHttpPostIn" />
+      <wsdl:output message="tns:InsertObjectToProjectRelationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordValues">
+      <wsdl:input message="tns:SearchDirectoryRecordValuesHttpPostIn" />
+      <wsdl:output message="tns:SearchDirectoryRecordValuesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <wsdl:input message="tns:GetDocumentVersionsHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentVersionsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIServiceSoap" type="tns:APIServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRecords">
+      <soap:operation soapAction="http://tempuri.org/GetRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedObjectsByClassifier">
+      <soap:operation soapAction="http://tempuri.org/GetUsedObjectsByClassifier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedTemplatesForClassifier">
+      <soap:operation soapAction="http://tempuri.org/GetUsedTemplatesForClassifier" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildRecords">
+      <soap:operation soapAction="http://tempuri.org/GetChildRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryInfo">
+      <soap:operation soapAction="http://tempuri.org/GetDirectoryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDirectoryRecord">
+      <soap:operation soapAction="http://tempuri.org/DeleteDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecord">
+      <soap:operation soapAction="http://tempuri.org/ChangeDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecordStatus">
+      <soap:operation soapAction="http://tempuri.org/ChangeDirectoryRecordStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordsByStatus">
+      <soap:operation soapAction="http://tempuri.org/SearchDirectoryRecordsByStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryRequisites">
+      <soap:operation soapAction="http://tempuri.org/GetDirectoryRequisites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDirectoryRecord">
+      <soap:operation soapAction="http://tempuri.org/InsertDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoriesList">
+      <soap:operation soapAction="http://tempuri.org/GetDirectoriesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassifierRecords">
+      <soap:operation soapAction="http://tempuri.org/GetClassifierRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClassifierRecord">
+      <soap:operation soapAction="http://tempuri.org/InsertClassifierRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationObjects">
+      <soap:operation soapAction="http://tempuri.org/GetRelationObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertObjectToProjectRelation">
+      <soap:operation soapAction="http://tempuri.org/InsertObjectToProjectRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordValues">
+      <soap:operation soapAction="http://tempuri.org/SearchDirectoryRecordValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentVersions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIServiceSoap12" type="tns:APIServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRecords">
+      <soap12:operation soapAction="http://tempuri.org/GetRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedObjectsByClassifier">
+      <soap12:operation soapAction="http://tempuri.org/GetUsedObjectsByClassifier" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedTemplatesForClassifier">
+      <soap12:operation soapAction="http://tempuri.org/GetUsedTemplatesForClassifier" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildRecords">
+      <soap12:operation soapAction="http://tempuri.org/GetChildRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetDirectoryInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDirectoryRecord">
+      <soap12:operation soapAction="http://tempuri.org/DeleteDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecord">
+      <soap12:operation soapAction="http://tempuri.org/ChangeDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecordStatus">
+      <soap12:operation soapAction="http://tempuri.org/ChangeDirectoryRecordStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordsByStatus">
+      <soap12:operation soapAction="http://tempuri.org/SearchDirectoryRecordsByStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryRequisites">
+      <soap12:operation soapAction="http://tempuri.org/GetDirectoryRequisites" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDirectoryRecord">
+      <soap12:operation soapAction="http://tempuri.org/InsertDirectoryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoriesList">
+      <soap12:operation soapAction="http://tempuri.org/GetDirectoriesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassifierRecords">
+      <soap12:operation soapAction="http://tempuri.org/GetClassifierRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertClassifierRecord">
+      <soap12:operation soapAction="http://tempuri.org/InsertClassifierRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationObjects">
+      <soap12:operation soapAction="http://tempuri.org/GetRelationObjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertObjectToProjectRelation">
+      <soap12:operation soapAction="http://tempuri.org/InsertObjectToProjectRelation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordValues">
+      <soap12:operation soapAction="http://tempuri.org/SearchDirectoryRecordValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentVersions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIServiceHttpPost" type="tns:APIServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetRecords">
+      <http:operation location="/GetRecords" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedObjectsByClassifier">
+      <http:operation location="/GetUsedObjectsByClassifier" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedTemplatesForClassifier">
+      <http:operation location="/GetUsedTemplatesForClassifier" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildRecords">
+      <http:operation location="/GetChildRecords" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryInfo">
+      <http:operation location="/GetDirectoryInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDirectoryRecord">
+      <http:operation location="/DeleteDirectoryRecord" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDirectoryRecordStatus">
+      <http:operation location="/ChangeDirectoryRecordStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordsByStatus">
+      <http:operation location="/SearchDirectoryRecordsByStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoryRequisites">
+      <http:operation location="/GetDirectoryRequisites" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectoriesList">
+      <http:operation location="/GetDirectoriesList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassifierRecords">
+      <http:operation location="/GetClassifierRecords" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelationObjects">
+      <http:operation location="/GetRelationObjects" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertObjectToProjectRelation">
+      <http:operation location="/InsertObjectToProjectRelation" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchDirectoryRecordValues">
+      <http:operation location="/SearchDirectoryRecordValues" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <http:operation location="/GetDocumentVersions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIService">
+    <wsdl:port name="APIServiceSoap" binding="tns:APIServiceSoap">
+      <soap:address location="https://rbtn.a2nta.ru/components/services/APIService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIServiceSoap12" binding="tns:APIServiceSoap12">
+      <soap12:address location="https://rbtn.a2nta.ru/components/services/APIService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIServiceHttpPost" binding="tns:APIServiceHttpPost">
+      <http:address location="https://rbtn.a2nta.ru/components/services/APIService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

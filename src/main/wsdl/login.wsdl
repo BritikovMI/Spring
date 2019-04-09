@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://streamline/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://streamline/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://streamline/">
+      <s:element name="login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="loginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Authenticate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateResult" type="tns:AuthenticationResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthenticationResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IssueCredential">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cr" type="tns:CredentialRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CredentialRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IssueCredentialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IssueCredentialResult" type="tns:CredentialInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CredentialInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="failureReason" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CredentialID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="credentialID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataKeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IssueLoginUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dataKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IssueLoginUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IssueLoginUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalIndicators">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="credentialID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersonalIndicatorsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalIndicatorsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="AuthenticationResponse" nillable="true" type="tns:AuthenticationResponse" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="loginSoapIn">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="loginSoapOut">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapIn">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IssueCredentialSoapIn">
+    <wsdl:part name="parameters" element="tns:IssueCredential" />
+  </wsdl:message>
+  <wsdl:message name="IssueCredentialSoapOut">
+    <wsdl:part name="parameters" element="tns:IssueCredentialResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataKeySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataKey" />
+  </wsdl:message>
+  <wsdl:message name="GetDataKeySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IssueLoginUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:IssueLoginUrl" />
+  </wsdl:message>
+  <wsdl:message name="IssueLoginUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:IssueLoginUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIndicatorsSoapIn">
+    <wsdl:part name="parameters" element="tns:PersonalIndicators" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIndicatorsSoapOut">
+    <wsdl:part name="parameters" element="tns:PersonalIndicatorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginHttpPostIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="loginHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateHttpPostIn">
+    <wsdl:part name="login" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateHttpPostOut">
+    <wsdl:part name="Body" element="tns:AuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataKeyHttpPostIn">
+    <wsdl:part name="credentialID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDataKeyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueLoginUrlHttpPostIn">
+    <wsdl:part name="dataKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="IssueLoginUrlHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIndicatorsHttpPostIn">
+    <wsdl:part name="credentialID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PersonalIndicatorsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="LoginSoap">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginSoapIn" />
+      <wsdl:output message="tns:loginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input message="tns:AuthenticateSoapIn" />
+      <wsdl:output message="tns:AuthenticateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueCredential">
+      <wsdl:input message="tns:IssueCredentialSoapIn" />
+      <wsdl:output message="tns:IssueCredentialSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataKey">
+      <wsdl:input message="tns:GetDataKeySoapIn" />
+      <wsdl:output message="tns:GetDataKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueLoginUrl">
+      <wsdl:input message="tns:IssueLoginUrlSoapIn" />
+      <wsdl:output message="tns:IssueLoginUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIndicators">
+      <wsdl:input message="tns:PersonalIndicatorsSoapIn" />
+      <wsdl:output message="tns:PersonalIndicatorsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LoginHttpPost">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginHttpPostIn" />
+      <wsdl:output message="tns:loginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input message="tns:AuthenticateHttpPostIn" />
+      <wsdl:output message="tns:AuthenticateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataKey">
+      <wsdl:input message="tns:GetDataKeyHttpPostIn" />
+      <wsdl:output message="tns:GetDataKeyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueLoginUrl">
+      <wsdl:input message="tns:IssueLoginUrlHttpPostIn" />
+      <wsdl:output message="tns:IssueLoginUrlHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIndicators">
+      <wsdl:input message="tns:PersonalIndicatorsHttpPostIn" />
+      <wsdl:output message="tns:PersonalIndicatorsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LoginSoap" type="tns:LoginSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://streamline/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://streamline/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueCredential">
+      <soap:operation soapAction="http://streamline/IssueCredential" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataKey">
+      <soap:operation soapAction="http://streamline/GetDataKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueLoginUrl">
+      <soap:operation soapAction="http://streamline/IssueLoginUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIndicators">
+      <soap:operation soapAction="http://streamline/PersonalIndicators" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginSoap12" type="tns:LoginSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="login">
+      <soap12:operation soapAction="http://streamline/login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap12:operation soapAction="http://streamline/Authenticate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueCredential">
+      <soap12:operation soapAction="http://streamline/IssueCredential" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataKey">
+      <soap12:operation soapAction="http://streamline/GetDataKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueLoginUrl">
+      <soap12:operation soapAction="http://streamline/IssueLoginUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIndicators">
+      <soap12:operation soapAction="http://streamline/PersonalIndicators" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LoginHttpPost" type="tns:LoginHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="login">
+      <http:operation location="/login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <http:operation location="/Authenticate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataKey">
+      <http:operation location="/GetDataKey" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueLoginUrl">
+      <http:operation location="/IssueLoginUrl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonalIndicators">
+      <http:operation location="/PersonalIndicators" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Login">
+    <wsdl:port name="LoginSoap" binding="tns:LoginSoap">
+      <soap:address location="https://rbtn.a2nta.ru/components/services/login.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginSoap12" binding="tns:LoginSoap12">
+      <soap12:address location="https://rbtn.a2nta.ru/components/services/login.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LoginHttpPost" binding="tns:LoginHttpPost">
+      <http:address location="https://rbtn.a2nta.ru/components/services/login.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

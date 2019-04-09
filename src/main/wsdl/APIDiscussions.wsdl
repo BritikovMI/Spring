@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateTopic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="addressees" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTopicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTopicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTopicWithFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="content" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="addressees" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="fields" type="tns:ArrayOfFieldWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FieldWrapper" nillable="true" type="tns:FieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FieldWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldVal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DocumentFieldWrapper">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:FieldWrapper">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentBody" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentContentType" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CreateTopicWithFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTopicWithFieldsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTopicReply">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="reply" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTopicReplyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTopicReplyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTopicStatusResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OpenExistingTopic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OpenExistingTopicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OpenExistingTopicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AskUsersToTopic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="addressees" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AskUsersToTopicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AskUsersToTopicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReAskUsersToTopic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="authorToo" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReAskUsersToTopicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReAskUsersToTopicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="topicId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopicInfoResult" type="tns:TopicInfoWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TopicInfoWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ParentProjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiscussionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReplyCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastReplyAuthor" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastReplyDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tasks" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfFieldWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTopicsInfoByProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ASPNETSessionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowChilds" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="discussionStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTopicsInfoByProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTopicsInfoByProjectResult" type="tns:ArrayOfTopicInfoWrapper" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTopicInfoWrapper">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TopicInfoWrapper" nillable="true" type="tns:TopicInfoWrapper" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="TopicInfoWrapper" nillable="true" type="tns:TopicInfoWrapper" />
+      <s:element name="ArrayOfTopicInfoWrapper" nillable="true" type="tns:ArrayOfTopicInfoWrapper" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateTopicSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTopic" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicWithFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTopicWithFields" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicWithFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTopicWithFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicReplySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTopicReply" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicReplySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTopicReplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopicStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopicStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="OpenExistingTopicSoapIn">
+    <wsdl:part name="parameters" element="tns:OpenExistingTopic" />
+  </wsdl:message>
+  <wsdl:message name="OpenExistingTopicSoapOut">
+    <wsdl:part name="parameters" element="tns:OpenExistingTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="AskUsersToTopicSoapIn">
+    <wsdl:part name="parameters" element="tns:AskUsersToTopic" />
+  </wsdl:message>
+  <wsdl:message name="AskUsersToTopicSoapOut">
+    <wsdl:part name="parameters" element="tns:AskUsersToTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReAskUsersToTopicSoapIn">
+    <wsdl:part name="parameters" element="tns:ReAskUsersToTopic" />
+  </wsdl:message>
+  <wsdl:message name="ReAskUsersToTopicSoapOut">
+    <wsdl:part name="parameters" element="tns:ReAskUsersToTopicResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopicInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicsInfoByProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTopicsInfoByProject" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicsInfoByProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTopicsInfoByProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicReplyHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="topicId" type="s:string" />
+    <wsdl:part name="reply" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateTopicReplyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicStatusHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="topicId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="OpenExistingTopicHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="topicId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OpenExistingTopicHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ReAskUsersToTopicHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="topicId" type="s:string" />
+    <wsdl:part name="authorToo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReAskUsersToTopicHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicInfoHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="topicId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:TopicInfoWrapper" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicsInfoByProjectHttpPostIn">
+    <wsdl:part name="ASPNETSessionId" type="s:string" />
+    <wsdl:part name="projectId" type="s:string" />
+    <wsdl:part name="allowChilds" type="s:string" />
+    <wsdl:part name="discussionStatus" type="s:string" />
+    <wsdl:part name="authorId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTopicsInfoByProjectHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTopicInfoWrapper" />
+  </wsdl:message>
+  <wsdl:portType name="APIDiscussionsSoap">
+    <wsdl:operation name="CreateTopic">
+      <wsdl:input message="tns:CreateTopicSoapIn" />
+      <wsdl:output message="tns:CreateTopicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicWithFields">
+      <wsdl:input message="tns:CreateTopicWithFieldsSoapIn" />
+      <wsdl:output message="tns:CreateTopicWithFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicReply">
+      <wsdl:input message="tns:CreateTopicReplySoapIn" />
+      <wsdl:output message="tns:CreateTopicReplySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicStatus">
+      <wsdl:input message="tns:GetTopicStatusSoapIn" />
+      <wsdl:output message="tns:GetTopicStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenExistingTopic">
+      <wsdl:input message="tns:OpenExistingTopicSoapIn" />
+      <wsdl:output message="tns:OpenExistingTopicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AskUsersToTopic">
+      <wsdl:input message="tns:AskUsersToTopicSoapIn" />
+      <wsdl:output message="tns:AskUsersToTopicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReAskUsersToTopic">
+      <wsdl:input message="tns:ReAskUsersToTopicSoapIn" />
+      <wsdl:output message="tns:ReAskUsersToTopicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicInfo">
+      <wsdl:input message="tns:GetTopicInfoSoapIn" />
+      <wsdl:output message="tns:GetTopicInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicsInfoByProject">
+      <wsdl:input message="tns:GetTopicsInfoByProjectSoapIn" />
+      <wsdl:output message="tns:GetTopicsInfoByProjectSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="APIDiscussionsHttpPost">
+    <wsdl:operation name="CreateTopicReply">
+      <wsdl:input message="tns:CreateTopicReplyHttpPostIn" />
+      <wsdl:output message="tns:CreateTopicReplyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicStatus">
+      <wsdl:input message="tns:GetTopicStatusHttpPostIn" />
+      <wsdl:output message="tns:GetTopicStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenExistingTopic">
+      <wsdl:input message="tns:OpenExistingTopicHttpPostIn" />
+      <wsdl:output message="tns:OpenExistingTopicHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReAskUsersToTopic">
+      <wsdl:input message="tns:ReAskUsersToTopicHttpPostIn" />
+      <wsdl:output message="tns:ReAskUsersToTopicHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicInfo">
+      <wsdl:input message="tns:GetTopicInfoHttpPostIn" />
+      <wsdl:output message="tns:GetTopicInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicsInfoByProject">
+      <wsdl:input message="tns:GetTopicsInfoByProjectHttpPostIn" />
+      <wsdl:output message="tns:GetTopicsInfoByProjectHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIDiscussionsSoap" type="tns:APIDiscussionsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTopic">
+      <soap:operation soapAction="http://tempuri.org/CreateTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicWithFields">
+      <soap:operation soapAction="http://tempuri.org/CreateTopicWithFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicReply">
+      <soap:operation soapAction="http://tempuri.org/CreateTopicReply" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicStatus">
+      <soap:operation soapAction="http://tempuri.org/GetTopicStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenExistingTopic">
+      <soap:operation soapAction="http://tempuri.org/OpenExistingTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AskUsersToTopic">
+      <soap:operation soapAction="http://tempuri.org/AskUsersToTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReAskUsersToTopic">
+      <soap:operation soapAction="http://tempuri.org/ReAskUsersToTopic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicInfo">
+      <soap:operation soapAction="http://tempuri.org/GetTopicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicsInfoByProject">
+      <soap:operation soapAction="http://tempuri.org/GetTopicsInfoByProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIDiscussionsSoap12" type="tns:APIDiscussionsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTopic">
+      <soap12:operation soapAction="http://tempuri.org/CreateTopic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicWithFields">
+      <soap12:operation soapAction="http://tempuri.org/CreateTopicWithFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTopicReply">
+      <soap12:operation soapAction="http://tempuri.org/CreateTopicReply" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetTopicStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenExistingTopic">
+      <soap12:operation soapAction="http://tempuri.org/OpenExistingTopic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AskUsersToTopic">
+      <soap12:operation soapAction="http://tempuri.org/AskUsersToTopic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReAskUsersToTopic">
+      <soap12:operation soapAction="http://tempuri.org/ReAskUsersToTopic" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetTopicInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicsInfoByProject">
+      <soap12:operation soapAction="http://tempuri.org/GetTopicsInfoByProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIDiscussionsHttpPost" type="tns:APIDiscussionsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateTopicReply">
+      <http:operation location="/CreateTopicReply" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicStatus">
+      <http:operation location="/GetTopicStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenExistingTopic">
+      <http:operation location="/OpenExistingTopic" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReAskUsersToTopic">
+      <http:operation location="/ReAskUsersToTopic" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicInfo">
+      <http:operation location="/GetTopicInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicsInfoByProject">
+      <http:operation location="/GetTopicsInfoByProject" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIDiscussions">
+    <wsdl:port name="APIDiscussionsSoap" binding="tns:APIDiscussionsSoap">
+      <soap:address location="https://rbtn.a2nta.ru/components/services/APIDiscussions.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIDiscussionsSoap12" binding="tns:APIDiscussionsSoap12">
+      <soap12:address location="https://rbtn.a2nta.ru/components/services/APIDiscussions.asmx" />
+    </wsdl:port>
+    <wsdl:port name="APIDiscussionsHttpPost" binding="tns:APIDiscussionsHttpPost">
+      <http:address location="https://rbtn.a2nta.ru/components/services/APIDiscussions.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
