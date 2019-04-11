@@ -1,2 +1,5 @@
 ru\rbt\schedule\app\ScheduledTasks.class
 ru\rbt\schedule\Application.class
+ru\rbt\schedule\advanta\Mail.class
+ru\rbt\schedule\advanta\Mail$1.class
+ru\rbt\schedule\advanta\MailSender.class

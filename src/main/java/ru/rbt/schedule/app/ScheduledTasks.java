@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.rbt.schedule.advanta.MailSenderOld;
 
 /**
  * Created by BritikovMI on 08.04.2019.
@@ -20,7 +21,7 @@ public class ScheduledTasks {
 
     @RequestMapping("/")
 //    @Scheduled(cron = "0 0 21 * * ?")// Каждый день в 21:00
-    @Scheduled(cron = "*/60 * * * * *") //Каждую минуту
+//    @Scheduled(cron = "*/15 * * * * *") //Каждую минуту
     //second, minute, hour, day of month, month, day(s) of week
     //* "0 0 * * * *" = the top of every hour of every day.
     //* "*/10 * * * * *" = every ten seconds.
@@ -30,5 +31,7 @@ public class ScheduledTasks {
     //* "0 0 0 25 12 ?" = every Christmas Day at midnight
     public void reportCurrentTime() {
         log.info("The time is now {}", dateFormat.format(new Date()));
+
+//        MailSenderOld.sendMail();
     }
 }
